@@ -1,0 +1,47 @@
+IP address:34.245.4.99
+--------------------------
+-sudo: sudo is a program for Unix-like computer operating systems that enables users to run programs with the security privileges of another user, by default the superuser.
+we should use it before running most of the commands. It allows us to make changes to system filed and directories
+-apt-get: apt-get is a command line tool for interacting with the Advanced Package Tool (APT) library. It allows you to search for, install, manage, update, and remove software. 
+
+I used the following commmands (in order):
+checkpoint 1:
+sudo apt-get update
+sudo apt-get install apache2 mysql-server php-mysql php libapache2-mod-php php-mcrypt php-pear curl php-curl php-cli git
+sudo a2enmod rewrite
+sudo service apache2 restart
+
+checkpoint 2:
+cd /var/www/html/
+pwd
+sudo git clone https://github.com/NinjaCoder8/stunning-laravel.git
+
+checkpoint 3:
+curl -sS https://getcomposer.org/installer | sudo php -- -- installdir=/usr/local/bin -- filename=composer
+cd stunning-larvel
+sudo composer install
+
+checkpoint 4:
+pwd
+cp .env.example .env
+sudo vim .env (-> i -> Scripting Project -> esc -> :x)
+sudo php artisan key:generate
+
+checkpoint 5:
+sudo systemctl status apache2
+which apache2
+/user/sbin/apache2
+cd /user/sbin
+ls
+cd /etc
+cd apache2
+sudo nano apache2.conf
+cd sites-enabled
+nano 000-default.conf
+sudo service apache2 restart
+
+checkpoint 6:
+cd /var/www/html/stunning-larvel/
+sudo chgrp -R www-data storage bootstrap/cache (it changes the group of the storage and bootstrap/cache to www-data group)
+sudo chmod -R ug+rwx storage bootstrap/cache (sets the file permissions of the "storage" and "bootstrap/cache" directories and their contents to allow the owner and members of the owner's group to read, write, and execute files)
+
